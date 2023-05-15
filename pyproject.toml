@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "chatgpt-plugin-localhost-shell"
+version = "0.1.0"
+description = ""
+authors = ["gaga5lala <gaga5lala1013@gmail.com>"]
+readme = "README.md"
+packages = [{include = "chatgpt_plugin_localhost_shell"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+flask = "^2.3.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

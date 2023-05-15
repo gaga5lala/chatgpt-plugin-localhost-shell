@@ -2,6 +2,7 @@ from flask import Flask, request
 import subprocess
 import os
 from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, Response
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -20,15 +21,19 @@ cors = CORS(app, resources={r"/*": {"origins": "https://chat.openai.com"}})
 
 @app.route('/openapi.yaml')
 def openapi_yaml():
-    return send_from_directory(app.static_folder, 'openapi.yaml')
+    with open('openapi.yaml', 'r') as f:
+        content = f.read()
+    return Response(content, mimetype='text/yaml')
 
 @app.route('/logo.png')
 def logo_png():
-    return send_from_directory(app.static_folder, 'logo.png')
+    return send_from_directory(app.static_folder, 'logo.png', mimetype='image/png')
 
 @app.route('/.well-known/ai-plugin.json')
 def manifest_json():
-    return send_from_directory(app.static_folder, '.well-known/ai-plugin.json')
+    with open('.well-known/ai-plugin.json', 'r') as f:
+        content = f.read()
+    return Response(content, mimetype='application/json')
 
 @app.route('/execute', methods=['POST'])
 def execute():

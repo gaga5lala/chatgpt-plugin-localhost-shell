@@ -1,0 +1,5 @@
+sudo
+rm
+mv
+chmod
+chown

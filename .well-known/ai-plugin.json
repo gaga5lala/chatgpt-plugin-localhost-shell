@@ -1,0 +1,18 @@
+{
+    "schema_version": "v1",
+    "name_for_human": "Shell Command Executor Plugin (no auth)",
+    "name_for_model": "shell_executor",
+    "description_for_human": "Plugin for executing shell commands, you can execute and get the result of your shell commands.",
+    "description_for_model": "Plugin for executing shell commands, you can execute and get the result of your shell commands.",
+    "auth": {
+      "type": "none"
+    },
+    "api": {
+      "type": "openapi",
+      "url": "http://localhost:5000/openapi.yaml",
+      "is_user_authenticated": false
+    },
+    "logo_url": "http://localhost:5000/logo.png",
+    "contact_email": "legal@example.com",
+    "legal_info_url": "http://example.com/legal"
+}

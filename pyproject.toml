@@ -9,6 +9,7 @@ packages = [{include = "chatgpt_plugin_localhost_shell"}]
 [tool.poetry.dependencies]
 python = "^3.8"
 flask = "^2.3.2"
+flask-cors = "^3.0.10"
 
 
 [build-system]

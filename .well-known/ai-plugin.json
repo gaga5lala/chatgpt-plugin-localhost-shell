@@ -9,10 +9,10 @@
     },
     "api": {
       "type": "openapi",
-      "url": "http://localhost:5000/openapi.yaml",
+      "url": "http://localhost:5001/openapi.yaml",
       "is_user_authenticated": false
     },
-    "logo_url": "http://localhost:5000/logo.png",
+    "logo_url": "http://localhost:5001/logo.png",
     "contact_email": "legal@example.com",
     "legal_info_url": "http://example.com/legal"
 }

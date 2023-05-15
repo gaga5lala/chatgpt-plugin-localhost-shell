@@ -24,21 +24,26 @@ def execute():
 
     if command.startswith('cd '):
         path = command.split(' ', 1)[1]
-        if path.startswith('/'):
-            work_dir = path
+        new_work_dir = os.path.join(work_dir, path) if not path.startswith('/') else path
+        if os.path.exists(new_work_dir) and os.path.isdir(new_work_dir):
+            work_dir = new_work_dir
+            output = ''
+            error = ''
+            exit_code = 0
         else:
-            work_dir = os.path.join(work_dir, path)
-        output = ''
-        error = ''
+            output = ''
+            error = f"No such file or directory: {new_work_dir}"
+            exit_code = 1
     else:
         result = subprocess.run(command, shell=True, cwd=work_dir, capture_output=True, text=True)
         output = result.stdout
         error = result.stderr
+        exit_code = result.returncode
 
     with open('log.txt', 'a') as f:
-        f.write(f"Command: {command}\nOutput: {output}\nError: {error}\n")
+        f.write(f"Command: {command}\nOutput: {output}\nError: {error}\nExit code: {exit_code}\n")
 
-    return {"output": output, "error": error}, 200
+    return {"output": output, "error": error, "exit_code": exit_code}, 200
 
 
 if __name__ == '__main__':

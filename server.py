@@ -17,7 +17,8 @@ def is_blacklisted(command):
     return any(blacklisted in command.split() for blacklisted in blacklist)
 
 
-cors = CORS(app, resources={r"/*": {"origins": "https://chat.openai.com"}})
+# cors = CORS(app, resources={r"/*": {"origins": "https://chat.openai.com"}})
+core = CORS(app, resources={r"/*": {"origins": ["https://chat.openai.com", "http://localhost", "http://127.0.0.1"]}})
 
 @app.route('/openapi.yaml')
 def openapi_yaml():
@@ -25,13 +26,18 @@ def openapi_yaml():
         content = f.read()
     return Response(content, mimetype='text/yaml')
 
+@app.route('/test')
+def test():
+    return {"message": "Test successful!"}, 200
+
 @app.route('/logo.png')
 def logo_png():
     return send_from_directory(app.static_folder, 'logo.png', mimetype='image/png')
 
+
 @app.route('/.well-known/ai-plugin.json')
 def manifest_json():
-    with open('.well-known/ai-plugin.json', 'r') as f:
+    with open('./.well-known/ai-plugin.json', 'r') as f:
         content = f.read()
     return Response(content, mimetype='application/json')
 
@@ -69,4 +75,5 @@ def execute():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    # app.run(debug=True, port=5000)
+    app.run(debug=True, port=5000, host='localhost')

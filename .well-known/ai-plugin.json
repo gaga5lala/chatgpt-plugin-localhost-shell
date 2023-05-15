@@ -1,6 +1,6 @@
 {
     "schema_version": "v1",
-    "name_for_human": "Shell Command Executor Plugin (no auth)",
+    "name_for_human": "Shell Command Executor Plugin",
     "name_for_model": "shell_executor",
     "description_for_human": "Plugin for executing shell commands, you can execute and get the result of your shell commands.",
     "description_for_model": "Plugin for executing shell commands, you can execute and get the result of your shell commands.",

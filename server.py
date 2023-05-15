@@ -24,6 +24,7 @@ def execute():
 
     if command.startswith('cd '):
         path = command.split(' ', 1)[1]
+        path = os.path.expanduser(path)  # Expand ~ to the actual home directory path
         new_work_dir = os.path.join(work_dir, path) if not path.startswith('/') else path
         if os.path.exists(new_work_dir) and os.path.isdir(new_work_dir):
             work_dir = new_work_dir

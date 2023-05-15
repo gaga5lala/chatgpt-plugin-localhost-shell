@@ -1,0 +1,47 @@
+openapi: 3.0.1
+info:
+  title: Command Execution Plugin
+  description: A plugin that allows the user to execute command line operations and manage command history. 
+  version: 'v1'
+servers:
+  - url: http://localhost:5001
+paths:
+  /execute:
+    post:
+      operationId: executeCommand
+      summary: Execute a command
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/executeCommandRequest'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/executeCommandResponse'
+components:
+  schemas:
+    executeCommandRequest:
+      type: object
+      required:
+        - command
+      properties:
+        command:
+          type: string
+          description: The command to execute.
+    executeCommandResponse:
+      type: object
+      properties:
+        output:
+          type: string
+          description: The output of the command execution.
+        exit_code:
+          type: integer
+          description: The exit code of the command execution.
+        current_directory:
+          type: string
+          description: The current working directory after the command execution.
